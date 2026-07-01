@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Navy Trust — professional, finance/enterprise palette */
+    --background: 220 35% 97%;
+    --foreground: 222 45% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 45% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 45% 11%;
+
+    /* Deep navy primary */
+    --primary: 222 60% 16%;
+    --primary-foreground: 220 35% 97%;
+    --primary-glow: 215 50% 35%;
+
+    --secondary: 218 30% 92%;
+    --secondary-foreground: 222 45% 16%;
+
+    /* Steel-blue accent */
+    --accent: 211 47% 43%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 218 25% 94%;
+    --muted-foreground: 220 14% 40%;
+
+    --destructive: 0 65% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 218 22% 88%;
+    --input: 218 22% 88%;
+    --ring: 222 60% 22%;
+
+    --radius: 0.5rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(222 60% 14%) 0%, hsl(218 55% 22%) 60%, hsl(211 47% 38%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(218 30% 99%) 100%);
+    --gradient-mesh: none;
+    --gradient-glow: radial-gradient(circle at center, hsl(222 60% 16% / 0.08) 0%, transparent 70%);
+    --gradient-border: linear-gradient(135deg, hsl(222 60% 20% / 0.18), hsl(211 47% 43% / 0.12));
+
+    --shadow-elegant: 0 8px 24px -12px hsl(222 60% 16% / 0.18);
+    --shadow-glow: 0 0 0 1px hsl(222 60% 16% / 0.05), 0 6px 16px -8px hsl(222 60% 16% / 0.15);
+    --shadow-neon: 0 4px 14px -6px hsl(222 60% 16% / 0.18);
+    --shadow-card: 0 1px 2px hsl(222 45% 11% / 0.04), 0 1px 3px hsl(222 45% 11% / 0.04);
+
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 222 55% 12%;
+    --sidebar-foreground: 218 30% 78%;
+    --sidebar-primary: 211 47% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 50% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 222 45% 18%;
+    --sidebar-ring: 211 47% 50%;
+  }
+
+  .dark { /* light-first; dark mode not used */ }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { color-scheme: light; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01","cv11";
+  }
+  h1, h2, h3, h4 { font-family: 'Libre Baskerville', Georgia, serif; letter-spacing: -0.01em; }
+  ::selection { background: hsl(222 60% 16% / 0.15); color: hsl(222 45% 11%); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(218 25% 96%); }
+  ::-webkit-scrollbar-thumb { background: hsl(218 15% 75%); border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(222 60% 30%); }
+}
+
+@layer utilities {
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-card { background-image: var(--gradient-card); }
+  .bg-gradient-mesh { background-image: var(--gradient-mesh); }
+  .bg-gradient-glow { background-image: var(--gradient-glow); }
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(222 45% 11% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(222 45% 11% / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .bg-grid-fade { mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
+  .text-gradient {
+    background-image: linear-gradient(135deg, hsl(222 60% 16%), hsl(211 47% 43%));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-neon { box-shadow: var(--shadow-neon); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .transition-smooth { transition: var(--transition-smooth); }
+  .transition-bounce { transition: var(--transition-bounce); }
+
+  .glass {
+    background: hsl(0 0% 100% / 0.85);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border: 1px solid hsl(var(--border));
+  }
+  .glass-strong {
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .hover-lift { @apply transition-smooth hover:-translate-y-0.5 hover:shadow-elegant; }
+}
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-glow-pulse { animation: none; }
+.animate-fade-in-up { animation: fade-in-up 0.45s ease-out both; }
+.animate-gradient { background-size: 200% 200%; }
+.animate-orb { animation: none; }
